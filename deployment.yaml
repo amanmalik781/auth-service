@@ -2,18 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth-service-deployment
+  labels:
+    app: auth-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: node-app
+      app: auth-service
   template:
     metadata:
       labels:
-        app: node-app
+        app: auth-service
     spec:
       containers:
-        - name: node-app
-          image: auth-service:latest
-          ports:
-            - containerPort: 3002
+      - name: auth-service
+        image: badfella/auth-service:latest
+        ports:
+        - containerPort: 3002
